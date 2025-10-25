@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تجربة النطق</title>
+  <title>تشغيل صوت MP3</title>
   <style>
     body {
       background: #0b1324;
@@ -31,18 +31,19 @@
 </head>
 <body>
 
-  <h1>اختبار النطق الصوتي</h1>
-  <button onclick="enableSpeech()">تفعيل الصوت</button>
+  <h1>تشغيل صوت MP3</h1>
+  <button onclick="playAudio()">تشغيل التذكرة</button>
+
+  <audio id="player" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
 
   <script>
-    function enableSpeech() {
-      try { speechSynthesis.cancel(); } catch(e) {}
+    function playAudio() {
+      const audio = document.getElementById('player');
+      audio.play().catch(e => {
+        alert("المتصفح منع التشغيل التلقائي، اضغطي الزر مرة ثانية.");
+      });
+    }
+  </script>
 
-      // نطق تجريبي لإجبار المتصفح على تفعيل الصوت
-      const test = new SpeechSynthesisUtterance("تم تفعيل الصوت بنجاح");
-      test.lang = 'ar-SA';
-      test.rate = 1.1;
-      test.pitch = 1.0;
-
-      const voices = speechSynthesis.getVoices();
-      const v = voices.find(v => /naayf|naif|
+</body>
+</html>
