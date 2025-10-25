@@ -1,8 +1,48 @@
-<button onclick="speak()">نطق تجريبي</button>
-<script>
-function speak() {
-  const u = new SpeechSynthesisUtterance("تجربة نطق");
-  u.lang = 'ar-SA';
-  speechSynthesis.speak(u);
-}
-</script>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تجربة النطق</title>
+  <style>
+    body {
+      background: #0b1324;
+      color: #fff;
+      font-family: -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    button {
+      padding: 16px 24px;
+      font-size: 24px;
+      font-weight: bold;
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>اختبار النطق الصوتي</h1>
+  <button onclick="enableSpeech()">تفعيل الصوت</button>
+
+  <script>
+    function enableSpeech() {
+      try { speechSynthesis.cancel(); } catch(e) {}
+
+      // نطق تجريبي لإجبار المتصفح على تفعيل الصوت
+      const test = new SpeechSynthesisUtterance("تم تفعيل الصوت بنجاح");
+      test.lang = 'ar-SA';
+      test.rate = 1.1;
+      test.pitch = 1.0;
+
+      const voices = speechSynthesis.getVoices();
+      const v = voices.find(v => /naayf|naif|
